@@ -42,3 +42,4 @@ hero\main.o: ..\Control\Inc\mpu6050.h
 hero\main.o: ..\Control\Inc\myiic.h
 hero\main.o: ..\Control\Inc\sys.h
 hero\main.o: ..\Control\Inc\debug.h
+hero\main.o: ..\Control\Inc\my_flash.h

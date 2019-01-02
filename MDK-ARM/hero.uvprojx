@@ -434,6 +434,11 @@
               <FileType>1</FileType>
               <FilePath>..\Control\Src\debug.c</FilePath>
             </File>
+            <File>
+              <FileName>my_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Control\Src\my_flash.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -475,9 +480,14 @@
               <FilePath>..\Control\Src\usart_my.c</FilePath>
             </File>
             <File>
-              <FileName>interact.c</FileName>
+              <FileName>debug.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Control\Src\interact.c</FilePath>
+              <FilePath>..\Control\Src\debug.c</FilePath>
+            </File>
+            <File>
+              <FileName>my_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Control\Src\my_flash.c</FilePath>
             </File>
           </Files>
         </Group>

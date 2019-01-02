@@ -10,6 +10,7 @@
 #define BEEP_ON PBout(4) = 1
 #define BEEPOOFF PBout(4) = 0
 
+
 void debug_init();
-uint16_t flash_read_halfword(uint32_t faddr);
+
 #endif

@@ -50,6 +50,7 @@
 #include "usart_my.h"
 #include "mpu6050.h"
 #include "debug.h"
+#include "my_flash.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -69,7 +70,6 @@ static void MX_NVIC_Init(void);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-
 /* USER CODE END 0 */
 
 /**
@@ -80,7 +80,7 @@ static void MX_NVIC_Init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+	
   /* USER CODE END 1 */
 
   /* MCU Configuration----------------------------------------------------------*/
@@ -113,16 +113,22 @@ int main(void)
 
   /* Initialize interrupts */
   MX_NVIC_Init();
-  /* USER CODE BEGIN 2 */
+  /* USER CODE BEGIN 2 */  
+	
+  uint32_t flash_test[4] = {-1, -1, -1, -1};
+  flash_write(flash_test, 4);
+	uint32_t flash_t2[4] = {0,0,0,0};
+  flash_read(MY_SECTOR_ADDR, flash_t2, 4);
+
 	//HAL_UART_Receive_DMA(&huart1,teledata_rx,sizeof(teledata_rx));				//遥控器接收数据通过DMA中断存入teledata			
   ALLPID_Init();
   HAL_Delay(2000);
-	HAL_TIM_Base_Start_IT(&htim6);												//定时器中断打开
+	//HAL_TIM_Base_Start_IT(&htim6);												//定时器中断打开
 	CAN1_Init();																//can初始化
 	MPU6050_Init();																//陀螺仪初始化
 	MPU6050_GyroOffest();																//陀螺仪校准
   debug_init();                            //led初始化
-
+  
 //	
 //	HAL_UART_Receive_IT(&huart2, camera.recieve,sizeof(camera.recieve));		//开启视觉数据接收中断
 //	HAL_UART_Receive _IT(&huart4, &rxPID.pidReadBuf, 1);							//pid调节参数接收中断
