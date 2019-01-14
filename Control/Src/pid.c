@@ -17,8 +17,10 @@ PID_Regulator_t cloud_yaw_speed_pid;
 PID_Regulator_t cloud_yaw_position_pid;
 PID_Regulator_t underpan_motor[4];
 
-void PID_Calc(PID_Regulator_t *pid)
+void PID_Calc(PID_Regulator_t *pid, float ref, float fdb)
 {
+	pid->ref = ref;
+	pid->fdb = fdb;
 	//位置式
 	if (pid->type == positional)
 	{
@@ -73,28 +75,19 @@ void PID_Init(PID_Regulator_t *pid,float kp,float ki,float kd,float componentKiM
 void Cloud_Speed(void)
 {
 	//PITCH
-	cloud_pitch_speed_pid.fdb = mpu6050.Gyro.Origin.y;					//反馈参数：陀螺仪角速度
-	cloud_pitch_speed_pid.ref = cloud_pitch_position_pid.output;			//设定参数：位置环输出
-	PID_Calc(&cloud_pitch_speed_pid);
+	PID_Calc(&cloud_pitch_speed_pid, cloud_pitch_position_pid.output, mpu6050.Gyro.Origin.y);
 	
 	//YAW
-	cloud_yaw_speed_pid.fdb = mpu6050.Gyro.Origin.x;					//反馈参数：陀螺仪角速度
-	cloud_yaw_speed_pid.ref = cloud_yaw_position_pid.output;			//设定参数：位置环输出
-	PID_Calc(&cloud_yaw_speed_pid);
-	
+	PID_Calc(&cloud_yaw_speed_pid, cloud_yaw_position_pid.output, mpu6050.Gyro.Origin.x);
 }
 
 void Cloud_Position(void)
 {
 	//PITCH
-	cloud_pitch_position_pid.fdb = cloud_pitch.Bmechanical_angle;				//反馈参数:云台电机角度
-	cloud_pitch_position_pid.ref = pitch;										//设定参数
-	PID_Calc(&cloud_pitch_position_pid);
+	PID_Calc(&cloud_pitch_position_pid, pitch_mid, cloud_pitch.Bmechanical_angle);
 	
 	//YAW
-	cloud_yaw_position_pid.fdb = cloud_yaw.Bmechanical_angle;					//反馈参数：云台电机角度
-	cloud_yaw_position_pid.ref = yaw;										//设定参数：位置环输出
-	PID_Calc(&cloud_yaw_position_pid);
+	PID_Calc(&cloud_yaw_position_pid, yaw_mid, cloud_yaw.Bmechanical_angle);
 	
 }
 

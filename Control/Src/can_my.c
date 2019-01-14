@@ -14,6 +14,12 @@ uint32_t pTxMailbox;
 CAN_TxHeaderTypeDef  Tx1Message;		//发送配置参数
 CAN_RxHeaderTypeDef  Rx1Message;		//接收配置参数
 
+struct underpan_parameter underpan_para[4];
+struct cloud_parameter cloud_pitch,cloud_yaw;
+struct dan_parameter dan_42;
+struct dan_parameter dan_17;
+struct dan_parameter dan_42_ver;
+
 void CAN1_Init()						
 {
 CAN_FilterTypeDef canfilter;

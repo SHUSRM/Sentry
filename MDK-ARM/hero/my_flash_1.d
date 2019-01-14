@@ -32,3 +32,5 @@ hero\my_flash_1.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 hero\my_flash_1.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 hero\my_flash_1.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 hero\my_flash_1.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+hero\my_flash_1.o: ..\Control\Inc\delay.h
+hero\my_flash_1.o: ..\Control\Inc\sys.h

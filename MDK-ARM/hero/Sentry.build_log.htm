@@ -17,7 +17,7 @@ Library Manager: ArmAr.exe V5.06 update 3 (build 300)
 Hex Converter:   FromElf.exe V5.06 update 3 (build 300)
 CPU DLL:         SARMCM3.DLL V5.21a
 Dialog DLL:      DCM.DLL V1.13.8.0
-Target DLL:      Segger\JL2CM3.dll V2.99.23.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.18.0
 Dialog DLL:      TCM.DLL V1.14.14.0
  
 <h2>Project:</h2>
@@ -27,49 +27,33 @@ Project File Date:  01/04/2019
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 3 (build 300)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'hero'
-compiling control.c...
-..\Control\Inc\tele_control.h(46): warning:  #1-D: last line of file ends without a newline
-  #endif
-..\Control\Inc\my_flash.h(25): warning:  #1-D: last line of file ends without a newline
-  #endif
+compiling debug.c...
 ..\Control\Inc\debug.h(15): warning:  #1295-D: Deprecated declaration debug_init - give arg types
   void debug_init();
 ..\Control\Inc\debug.h(17): warning:  #1-D: last line of file ends without a newline
   #endif
-..\Control\Src\control.c(123): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	if(
-BS(track_position) < 
-BS(track_len * 0.05))
-..\Control\Src\control.c(123): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	if(
-BS(track_position) < 
-BS(track_len * 0.05))
-..\Control\Src\control.c(123): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	if(
-BS(track_position) < 
-BS(track_len * 0.05))
-..\Control\Src\control.c(128): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	else if(
-BS(track_position) > 
-BS(track_len *0.95))
-..\Control\Src\control.c(128): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	else if(
-BS(track_position) > 
-BS(track_len *0.95))
-..\Control\Src\control.c(128): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	else if(
-BS(track_position) > 
-BS(track_len *0.95))
-..\Control\Src\control.c(201): warning:  #1-D: last line of file ends without a newline
-  /****************************************/
-..\Control\Src\control.c: 11 warnings, 0 errors
-linking...
-hero\hero.axf: Warning: L6304W: Duplicate input file hero\debug_1.o ignored.
-hero\hero.axf: Warning: L6304W: Duplicate input file hero\my_flash_1.o ignored.
-Program Size: Code=20146 RO-data=494 RW-data=116 ZI-data=2516  
-Finished: 0 information, 2 warning and 0 error messages.
-FromELF: creating hex file...
-"hero\hero.axf" - 0 Error(s), 13 Warning(s).
+..\Control\Src\debug.c(8): warning:  #1-D: last line of file ends without a newline
+  }
+..\Control\Src\debug.c: 3 warnings, 0 errors
+compiling my_flash.c...
+..\Control\Inc\my_flash.h(25): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Control\Src\my_flash.c(83): warning:  #1-D: last line of file ends without a newline
+  }
+..\Control\Src\my_flash.c: 2 warnings, 0 errors
+compiling timer.c...
+..\Control\Inc\debug.h(15): warning:  #1295-D: Deprecated declaration debug_init - give arg types
+  void debug_init();
+..\Control\Inc\debug.h(17): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Control\Inc\tele_control.h(48): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Control\Src\timer.c(28): error:  #20: identifier "Timeticks1ms" is undefined
+    if(Timeticks1ms % 9 == 0)
+..\Control\Src\timer.c(39): warning:  #223-D: function "sendware" declared implicitly
+    sendware(output, sizeof(output));
+..\Control\Src\timer.c: 4 warnings, 1 error
+"hero\Sentry.axf" - 1 Error(s), 9 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -87,7 +71,8 @@ Package Vendor: ARM
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:4.3.0
-Build Time Elapsed:  00:00:03
+Target not created.
+Build Time Elapsed:  00:00:05
 </pre>
 </body>
 </html>

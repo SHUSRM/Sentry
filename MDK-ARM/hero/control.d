@@ -32,7 +32,11 @@ hero\control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 hero\control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 hero\control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 hero\control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
-hero\control.o: ..\Control\Inc\pid.h
 hero\control.o: ..\Control\Inc\mpu6050.h
 hero\control.o: ..\Control\Inc\myiic.h
 hero\control.o: ..\Control\Inc\sys.h
+hero\control.o: ..\Control\Inc\pid.h
+hero\control.o: ..\Control\Inc\tele_control.h
+hero\control.o: ..\Control\Inc\my_flash.h
+hero\control.o: ..\Control\Inc\can_my.h
+hero\control.o: ..\Control\Inc\debug.h

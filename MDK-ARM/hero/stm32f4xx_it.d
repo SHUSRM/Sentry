@@ -33,6 +33,6 @@ hero\stm32f4xx_it.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 hero\stm32f4xx_it.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 hero\stm32f4xx_it.o: ../Inc/stm32f4xx_it.h
 hero\stm32f4xx_it.o: ..\Control\Inc\control.h
-hero\stm32f4xx_it.o: ..\Control\Inc\pid.h
 hero\stm32f4xx_it.o: ..\Control\Inc\timer.h
 hero\stm32f4xx_it.o: ..\Control\Inc\can_my.h
+hero\stm32f4xx_it.o: ..\Control\Inc\tele_control.h

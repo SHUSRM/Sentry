@@ -2,6 +2,7 @@
 #define __DEBUG_H
 
 #include "sys.h"
+#include "stm32f4xx_HAL.h"
 
 #define LED_R_ON PEout(7) = 0
 #define LED_R_OFF PEout(7) = 1

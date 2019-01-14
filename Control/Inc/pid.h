@@ -3,6 +3,9 @@
 
 #include "stm32f4xx_HAL.h"
 
+#define SGN(x) ((x >= 0) ? 1 : -1)
+#define ABS(x) ((x >= 0)? x : -x)
+
 typedef enum PID_type
 {
 	positional,
@@ -33,7 +36,7 @@ extern PID_Regulator_t cloud_yaw_speed_pid;
 extern PID_Regulator_t cloud_yaw_position_pid;
 extern PID_Regulator_t underpan_motor[4];
 
-void PID_Calc(PID_Regulator_t *pid);
+void PID_Calc(PID_Regulator_t *pid, float ref, float fdb);
 void PID_Init(PID_Regulator_t *pid,float kp,float ki,float kd,float componentKiMax,float outputMax,PID_type type);
 void Cloud_Speed(void);
 void Cloud_Position(void);

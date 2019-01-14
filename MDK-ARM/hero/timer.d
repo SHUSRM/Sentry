@@ -33,9 +33,10 @@ hero\timer.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 hero\timer.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 hero\timer.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 hero\timer.o: ..\Control\Inc\control.h
-hero\timer.o: ..\Control\Inc\pid.h
 hero\timer.o: ..\Control\Inc\can_my.h
+hero\timer.o: ..\Control\Inc\pid.h
 hero\timer.o: ..\Control\Inc\mpu6050.h
 hero\timer.o: ..\Control\Inc\myiic.h
 hero\timer.o: ..\Control\Inc\sys.h
 hero\timer.o: ..\Control\Inc\debug.h
+hero\timer.o: ..\Control\Inc\tele_control.h

@@ -310,7 +310,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>4</Optim>
+            <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -438,6 +438,11 @@
               <FileName>my_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Control\Src\my_flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>tele_control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Control\Src\tele_control.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -43,3 +43,5 @@ hero\main.o: ..\Control\Inc\myiic.h
 hero\main.o: ..\Control\Inc\sys.h
 hero\main.o: ..\Control\Inc\debug.h
 hero\main.o: ..\Control\Inc\my_flash.h
+hero\main.o: ..\Control\Inc\tele_control.h
+hero\main.o: ..\Control\Inc\delay.h
