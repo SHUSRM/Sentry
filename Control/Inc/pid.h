@@ -5,6 +5,7 @@
 
 #define SGN(x) ((x >= 0) ? 1 : -1)
 #define ABS(x) ((x >= 0)? x : -x)
+#define SQR(X) (X*X)
 
 typedef enum PID_type
 {

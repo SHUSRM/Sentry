@@ -124,7 +124,7 @@ int main(void)
 	HAL_TIM_Base_Start_IT(&htim6);												//定时器中断打开
 	CAN1_Init();																//can初始化
 	MPU6050_Init();																//陀螺仪初始化
-	MPU6050_GyroOffest();																//陀螺仪校准
+	// MPU6050_GyroOffest();																//陀螺仪校准
   debug_init();                            //led初始化
 
 //	

@@ -35,12 +35,9 @@ extern uint8_t teledata_rx[18];
 extern TELE_CON_DATA tele_data;
 extern uint8_t tele_timer;
 
-
-
 void telecontroller_data(void);
 void clear_teledata(void);
 void renew_tele_timer(void);
-void renew_tele_dma(void);
 
 
 #endif

@@ -96,8 +96,16 @@ void CAN_Getdata(CAN_HandleTypeDef *hcan,CAN_RxHeaderTypeDef *pHeader,uint8_t aD
 			underpan_para[3].motor_temperature=aData[6];	
 
     }break;
-	
 	case 0x205:
+	{
+		  cloud_pitch.mechanical_angle=aData[0]<<8|aData[1];
+			cloud_pitch.torque=aData[2]<<8|aData[3];
+			cloud_pitch.torque_current=aData[4]<<8|aData[5];
+		  if(cloud_pitch.mechanical_angle<4096) cloud_pitch.Bmechanical_angle=cloud_pitch.mechanical_angle;
+		  if(cloud_pitch.mechanical_angle>4096) cloud_pitch.Bmechanical_angle=cloud_pitch.mechanical_angle-8192;
+						
+	}break;
+	case 0x206:
 	{
 			cloud_yaw.mechanical_angle=aData[0]<<8|aData[1];
 			cloud_yaw.torque=aData[2]<<8|aData[3];
@@ -107,15 +115,7 @@ void CAN_Getdata(CAN_HandleTypeDef *hcan,CAN_RxHeaderTypeDef *pHeader,uint8_t aD
 	
 	}break;
 	
-    case 0x206:
-	{
-		  cloud_pitch.mechanical_angle=aData[0]<<8|aData[1];
-			cloud_pitch.torque=aData[2]<<8|aData[3];
-			cloud_pitch.torque_current=aData[4]<<8|aData[5];
-		  if(cloud_pitch.mechanical_angle<4096) cloud_pitch.Bmechanical_angle=cloud_pitch.mechanical_angle;
-		  if(cloud_pitch.mechanical_angle>4096) cloud_pitch.Bmechanical_angle=cloud_pitch.mechanical_angle-8192;
-						
-	}break;
+
 
 	// case 0x205:
 	// {

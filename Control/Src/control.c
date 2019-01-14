@@ -59,8 +59,7 @@ void switch_control(void)
 			else if(tele_data.sl == MIDDLE)
 			{
 				track_mod = MEASURE_LEN;
-				track_len += underpan_para[0].rotation_rate;
-				track_len += underpan_para[1].rotation_rate;				
+				track_len += underpan_para[0].rotation_rate;			
 			}
 			//保持最上档，确定运行起点
 			else if(tele_data.sl == BOTTOM)
@@ -115,7 +114,7 @@ void switch_control(void)
 void underpan_control(float speed_ref)
 {
     PID_Calc(&underpan_motor[0], speed_ref, underpan_para[0].rotation_rate);
-	PID_Calc(&underpan_motor[1], speed_ref, underpan_para[1].rotation_rate);
+	PID_Calc(&underpan_motor[1], -speed_ref, underpan_para[1].rotation_rate);
     Underpan_motor_output(underpan_motor[0].output, underpan_motor[1].output, 0, 0);
 }
 
@@ -159,11 +158,10 @@ void motor_control(void)
 			rounds_control(500);
 			break;
 		default:
-			rounds_control(500);
+			rounds_control(0);
 			break;
 	}
 	track_position += underpan_para[0].rotation_rate;
-	track_position += underpan_para[1].rotation_rate;
 }
 
 void para_init(void)

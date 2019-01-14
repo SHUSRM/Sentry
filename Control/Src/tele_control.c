@@ -28,6 +28,7 @@ void telecontroller_data(void)
 	tele_data.key=teledata_rx[14] | (teledata_rx[15] << 8);
 	tele_data.resv=teledata_rx[16]|(teledata_rx[17]<<8);
 
+    tele_timer = 200;
 }
 
 //清空遥控器数据
@@ -57,10 +58,4 @@ void renew_tele_timer(void)
         clear_teledata();
         tele_timer = 200;
     }
-}
-
-//dma中断更新遥控器状态
-void renew_tele_dma(void)
-{
-    tele_timer = 200;
 }

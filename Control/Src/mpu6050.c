@@ -81,12 +81,12 @@ uint8_t MPU_Get_Accelerometer(short *ax, short *ay, short *az)
 }
 uint8_t MPU6050_Init(void)
 {
-	uint8_t res;
+	uint8_t res = 0;
 
-	// PFout(0) = 1;
-	// HAL_Delay(100);
-	// PFout(0) = 0;
-	// HAL_Delay(100);
+	PFout(0) = 1;
+	HAL_Delay(100);
+	PFout(0) = 0;
+	HAL_Delay(100);
 	IIC_Init();								 //初始化IIC总线
 	MPU_Write_Byte(MPU_PWR_MGMT1_REG, 0X80); //复位MPU6050
 	HAL_Delay(100);
@@ -103,7 +103,7 @@ uint8_t MPU6050_Init(void)
 	{
 		MPU_Write_Byte(MPU_PWR_MGMT1_REG, 0X01); //设置CLKSEL,PLL X轴为参考
 		MPU_Write_Byte(MPU_PWR_MGMT2_REG, 0X00); //加速度与陀螺仪都工作
-		MPU_Set_Rate(1000);						 //设置采样率为50Hz
+		MPU_Set_Rate(1000);						 //设置采样率为1000Hz
 	}
 	else
 		return 1;
