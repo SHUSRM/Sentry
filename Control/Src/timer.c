@@ -29,8 +29,8 @@ void Timer_interrupt(void)
 
   if(Timetick1ms % 9 == 0)
   {
-    // switch_control();
-    // motor_control();
+    switch_control();
+    motor_control();
   }
 
   // output[0] = underpan_para[0].rotation_rate;
@@ -38,12 +38,12 @@ void Timer_interrupt(void)
   // output[2] = underpan_motor[0].output;
   // output[3] = -underpan_motor[1].output;
   
-  output[0] = mpu6050.Gyro.Origin.x;
-  output[1] = mpu6050.Gyro.Origin.y;
-  output[2] = mpu6050.Gyro.Origin.z;
-  output[3] = output[0]+ output[2];
-  // output[0] = cloud_pitch.Bmechanical_angle;
-  // output[1] = cloud_yaw.Bmechanical_angle;
+  // output[0] = mpu6050.Gyro.Origin.x;
+  // output[1] = mpu6050.Gyro.Origin.y;
+  // output[2] = mpu6050.Gyro.Origin.z;
+  // output[3] = dan.speed;
+  output[0] = cloud_pitch.Bmechanical_angle;
+  output[1] = cloud_yaw.Bmechanical_angle;
   // output[0] = underpan_motor[0].output;
 	// output[1] = underpan_motor[0].ref;
   // output[2] = track_len;

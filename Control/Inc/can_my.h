@@ -60,16 +60,13 @@ static uint8_t aData[8];
 
 extern struct underpan_parameter underpan_para[4];
 extern struct cloud_parameter cloud_pitch,cloud_yaw;
-extern struct dan_parameter dan_42;
-extern struct dan_parameter dan_17;
-extern struct dan_parameter dan_42_ver;
+extern struct dan_parameter dan;
 
 void CAN1_Init(void);
 void CAN_Getdata(CAN_HandleTypeDef *hcan,CAN_RxHeaderTypeDef *pHeader,uint8_t aData[]);
 void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef *hcan);
 void Underpan_motor_output(int16_t iq1,int16_t iq2,int16_t iq3,int16_t iq4);
-void Cloud_motor_output(int16_t iq1,int16_t iq2);
-void Rammer_motor_output(int16_t iq1,int16_t iq2,int16_t iq3,int16_t iq4);
-
+void Cloud_motor_output(int16_t iq1,int16_t iq2,int16_t iq3);
+void clearTxData(void);
 
 #endif

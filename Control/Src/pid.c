@@ -16,6 +16,7 @@ PID_Regulator_t cloud_pitch_position_pid;
 PID_Regulator_t cloud_yaw_speed_pid;
 PID_Regulator_t cloud_yaw_position_pid;
 PID_Regulator_t underpan_motor[4];
+PID_Regulator_t dan_pid;
 
 void PID_Calc(PID_Regulator_t *pid, float ref, float fdb)
 {
@@ -94,14 +95,15 @@ void Cloud_Position(void)
 void ALLPID_Init()
 {
 	int i;
+	PID_Init(&dan_pid, 2, 1, 0, 2000, 2000, increment);
 
-	PID_Init(&cloud_pitch_position_pid,	-70,	-1,	5,	3000,	10000, positional);
-	PID_Init(&cloud_pitch_speed_pid,	0.30, 0, -0,	2000,5000, positional);
+	PID_Init(&cloud_pitch_position_pid,	0, 0, 0, 3000, 10000, positional);
+	PID_Init(&cloud_pitch_speed_pid	  , 0, 1, 0, 2000, 5000, positional);
 	
-	PID_Init(&cloud_yaw_position_pid,	45,	0,	-7,	1000,	12000, positional);
-	PID_Init(&cloud_yaw_speed_pid	,	-0.5,-0,-0,	1000,5000, positional);
+	PID_Init(&cloud_yaw_position_pid, 0, 0, 0, 1000, 12000, positional);
+	PID_Init(&cloud_yaw_speed_pid	, 0, 1, 0, 1000, 5000, positional);
 
-	for (i = 0;i <= 3; i++)
+	for (i = 0;i < 4; i++)
 	{
 		PID_Init(&underpan_motor[i], 5, 0.03, 0, 8000, 16000, increment);
 	}

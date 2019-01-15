@@ -12,6 +12,8 @@
 #include "my_flash.h"
 #include "can_my.h"
 #include "debug.h"
+#include "stm32f4xx_hal.h"
+
 
 //运行模式
 uint8_t run_mod;
@@ -118,6 +120,7 @@ void underpan_control(float speed_ref)
     Underpan_motor_output(underpan_motor[0].output, underpan_motor[1].output, 0, 0);
 }
 
+
 void rounds_control(float speed_ref)
 {
 	//控制往返方向
@@ -141,11 +144,12 @@ void rounds_control(float speed_ref)
 
 void cloud_control(void)
 {
-
+	PID_Calc(&cloud_pitch_speed_pid, 0, mpu6050.Gyro.Origin.y);
 }
 
 void motor_control(void)
 {
+	//底盘、云台
 	switch (run_mod)
 	{
 		case DEBUG:
@@ -162,6 +166,20 @@ void motor_control(void)
 			break;
 	}
 	track_position += underpan_para[0].rotation_rate;
+	//拨弹、摩擦轮
+	if (shoot_switch == 1)
+	{
+		TIM12->CCR1 = 1600;
+		TIM12->CCR2 = 1600;
+	}
+	else
+	{
+		TIM12->CCR1 = 800;
+		TIM12->CCR2 = 800;
+	}
+	PID_Calc(&dan_pid, shoot_switch*(-1000), dan.speed);
+
+	Cloud_motor_output(0, 0, dan_pid.output);
 }
 
 void para_init(void)

@@ -3,8 +3,8 @@
 
 #include "stm32f4xx_HAL.h"
 
-#define pitch_mid  -550	//云台pitch轴初值   800				-800black
-#define yaw_mid -2600	//云台yaw轴初值			300		1000black
+#define pitch_mid  1500	//云台pitch轴中值
+#define yaw_mid 2500	//云台yaw轴中值
 
 //运行模式
 #define MANUAL  0x00

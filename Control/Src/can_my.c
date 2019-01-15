@@ -16,9 +16,7 @@ CAN_RxHeaderTypeDef  Rx1Message;		//接收配置参数
 
 struct underpan_parameter underpan_para[4];
 struct cloud_parameter cloud_pitch,cloud_yaw;
-struct dan_parameter dan_42;
-struct dan_parameter dan_17;
-struct dan_parameter dan_42_ver;
+struct dan_parameter dan;
 
 void CAN1_Init()						
 {
@@ -114,27 +112,16 @@ void CAN_Getdata(CAN_HandleTypeDef *hcan,CAN_RxHeaderTypeDef *pHeader,uint8_t aD
 		  if(cloud_yaw.mechanical_angle>4096) cloud_yaw.Bmechanical_angle=cloud_yaw.mechanical_angle-8192;
 	
 	}break;
-	
-
-
-	// case 0x205:
-	// {
- 	// 	dan_42.mechanical_angle=aData[0]<<8|aData[1];
-	// 	dan_42.speed=aData[2]<<8|aData[3];
+    case 0x207:
+	{
+ 		dan.mechanical_angle=aData[0]<<8|aData[1];
+		dan.speed=aData[2]<<8|aData[3];
 					
-	// }break;	
-    // case 0x206:
-	// {
- 	// 	dan_17.mechanical_angle=aData[0]<<8|aData[1];
-	// 	dan_17.speed=aData[2]<<8|aData[3];
-					
-	// }break;
-    // case 0x207:
-	// {
- 	// 	dan_42_ver.mechanical_angle=aData[0]<<8|aData[1];
-	// 	dan_42_ver.speed=aData[2]<<8|aData[3];
-					
-	// }break;	
+	}break;	
+	default:
+	{
+		break;
+	}
   }
 	
 }
@@ -160,11 +147,12 @@ void Underpan_motor_output(int16_t iq1,int16_t iq2,int16_t iq3,int16_t iq4)
 	TxData[7] = iq4;
 	
 	HAL_CAN_AddTxMessage(&hcan1, &Tx1Message,  TxData, &pTxMailbox);
+	clearTxData();
 }
 
 /*发送数据
 云台发送数据时，标识符为0x1ff*/
-void Cloud_motor_output(int16_t iq1,int16_t iq2)
+void Cloud_motor_output(int16_t iq1,int16_t iq2,int16_t iq3)
 {
 	Tx1Message.StdId = 0x1ff;
 	Tx1Message.IDE = CAN_ID_STD;
@@ -175,32 +163,18 @@ void Cloud_motor_output(int16_t iq1,int16_t iq2)
 	TxData[1] = iq1;
 	TxData[2] = iq2 >> 8;
 	TxData[3] = iq2;
+	TxData[4] = iq3 >> 8;
+	TxData[5] = iq3;
 
 	HAL_CAN_AddTxMessage(&hcan1, &Tx1Message,  TxData, &pTxMailbox);
+	clearTxData();
 }
 
-
-/*拨弹电机输出程序
-标识符为0x1ff*/
-// void Rammer_motor_output(int16_t iq1,int16_t iq2,int16_t iq3,int16_t iq4)
-// {
-	
-// 	Tx1Message.StdId = 0x1ff;
-// 	Tx1Message.IDE = CAN_ID_STD;
-// 	Tx1Message.RTR = CAN_RTR_DATA;
-// 	Tx1Message.DLC = 0x08;
-	
-// 	TxData[0] = iq1 >> 8;
-// 	TxData[1] = iq1;
-// 	TxData[2] = iq2 >> 8;
-// 	TxData[3] = iq2;
-// 	TxData[4] = iq3 >> 8;
-// 	TxData[5] = iq3;
-
-	
-// 	HAL_CAN_AddTxMessage(&hcan1, &Tx1Message,  TxData, &pTxMailbox);
-// }
-
-
-
-
+void clearTxData(void)
+{
+	int i = 0;
+	for (i = 0; i < 8; i++)
+	{
+		TxData[i] = 0;
+	}
+}

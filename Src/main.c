@@ -10,7 +10,7 @@
   * inserted by the user or by software development tools
   * are owned by their respective copyright owners.
   *
-  * COPYRIGHT(c) 2018 STMicroelectronics
+  * COPYRIGHT(c) 2019 STMicroelectronics
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -116,11 +116,19 @@ int main(void)
 
   /* Initialize interrupts */
   MX_NVIC_Init();
-  /* USER CODE BEGIN 2 */ 
+  /* USER CODE BEGIN 2 */
   para_init();
 	HAL_UART_Receive_DMA(&huart1,teledata_rx,sizeof(teledata_rx));				//遥控器接收数据通过DMA中断存入teledata			
   ALLPID_Init();
-  HAL_Delay(2000);
+	HAL_TIM_PWM_Start(&htim12,TIM_CHANNEL_1);
+	HAL_TIM_PWM_Start(&htim12,TIM_CHANNEL_2);
+	TIM12->CCR1 = 800;
+	TIM12->CCR2 = 800;
+	HAL_Delay(2000);
+	HAL_Delay(2000);
+	HAL_Delay(2000);
+	HAL_Delay(2000);
+	HAL_Delay(2000);
 	HAL_TIM_Base_Start_IT(&htim6);												//定时器中断打开
 	CAN1_Init();																//can初始化
 	MPU6050_Init();																//陀螺仪初始化

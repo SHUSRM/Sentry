@@ -36,6 +36,8 @@ extern PID_Regulator_t cloud_pitch_position_pid;
 extern PID_Regulator_t cloud_yaw_speed_pid;
 extern PID_Regulator_t cloud_yaw_position_pid;
 extern PID_Regulator_t underpan_motor[4];
+extern PID_Regulator_t dan_pid;
+
 
 void PID_Calc(PID_Regulator_t *pid, float ref, float fdb);
 void PID_Init(PID_Regulator_t *pid,float kp,float ki,float kd,float componentKiMax,float outputMax,PID_type type);
