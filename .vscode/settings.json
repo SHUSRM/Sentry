@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "mpu6050.h": "c",
-        "debug.h": "c"
+        "debug.h": "c",
+        "can_my.h": "c"
     }
 }

@@ -9,7 +9,9 @@
 #ifndef _TIMER_H
 #define _TIMER_H
 
-#include "stm32f4xx_HAL.h"
+#include "stm32f4xx_HAL.h" 
+
+extern uint16_t Timetick1ms;
 
 void Timer_interrupt(void);
 

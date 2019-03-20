@@ -1,8 +1,5 @@
---cpu Cortex-M4.fp
+--cpu=Cortex-M4.fp
 "hero\startup_stm32f427xx.o"
-"hero\debug_1.o"
-"hero\my_flash_1.o"
-"hero\tele_control.o"
 "hero\main.o"
 "hero\gpio.o"
 "hero\can.o"
@@ -19,6 +16,8 @@
 "hero\usart_my.o"
 "hero\debug_1.o"
 "hero\my_flash_1.o"
+"hero\filter.o"
+"hero\tele_control.o"
 "hero\mpu6050.o"
 "hero\delay.o"
 "hero\myiic.o"
@@ -39,6 +38,6 @@
 "hero\stm32f4xx_hal_cortex.o"
 "hero\stm32f4xx_hal.o"
 --library_type=microlib --strict --scatter "hero\hero.sct"
---summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "hero.map" -o hero\hero.axf

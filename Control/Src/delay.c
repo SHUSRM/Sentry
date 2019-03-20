@@ -56,7 +56,7 @@ void delay_us(uint32_t nus)
 //SYSCLK单位为Hz,nms单位为ms
 //对168M条件下,nms<=798ms 
 void delay_xms(uint16_t nms)
-{	 		  	  
+{	 		  	   6
 	u32 temp;		   
 	SysTick->LOAD=(uint32_t)nms*fac_ms;//时间加载(SysTick->LOAD为24bit)
 	SysTick->VAL =0x00;           //清空计数器

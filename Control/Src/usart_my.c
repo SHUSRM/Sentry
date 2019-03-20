@@ -37,106 +37,89 @@ void sendware(void *wareaddr, uint32_t waresize)
 	HAL_UART_Transmit(&huart4, (uint8_t *)wareaddr, waresize ,5000);
 	HAL_UART_Transmit(&huart4, (uint8_t *)cmdr, sizeof(cmdr), 5000);
 }
+
 uint8_t data[10];
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-	/************Ð¡µçÄÔ´®¿ÚÊý¾Ý´¦Àí*************/
+	/************Ð¡ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½*************/
     if (huart->Instance==USART2)
     {
-		// 	//sendware(camera.recieve,sizeof(camera.recieve));
-        // switch (camera.count)
-        // {
-        //     case 0:
-        //         if (camera.recieve[0]=='&') camera.count=1;
-        //         else camera.count=0;
-		// 						data[camera.count] = camera.recieve[0];
-        //         break;
-        //     case 1:
-        //         if (camera.recieve[0]=='%') camera.count=2;
-        //         else camera.count=0;
-		// 						data[camera.count] = camera.recieve[0];
-        //         break;
-        //     case 2:
-        //         camera.sum = '%'+'&';
-        //         camera.x = camera.recieve[0]<<8;
-        //         camera.sum += camera.recieve[0];
-        //         camera.count=3;
-		// 						data[camera.count] = camera.recieve[0];
-        //         break;
-        //     case 3:
-        //         camera.x += camera.recieve[0];
-        //         camera.sum += camera.recieve[0];
-        //         camera.count=4;
-		// 						data[camera.count] = camera.recieve[0];
-        //         break;
-        //     case 4:
-        //         if (camera.recieve[0]=='-') camera.x = -camera.x;
-        //         camera.sum += camera.recieve[0];
-        //         camera.count=5;
-		// 						data[camera.count] = camera.recieve[0];
-        //         break;
-        //     case 5:
-        //         camera.y = camera.recieve[0]<<8;
-        //         camera.sum += camera.recieve[0];
-        //         camera.count=6;
-		// 						data[camera.count] = camera.recieve[0];
-        //         break;
-        //     case 6:
-        //         camera.y += camera.recieve[0];
-        //         camera.sum += camera.recieve[0];
-        //         camera.count=7;
-		// 						data[camera.count] = camera.recieve[0];
-        //         break;
-        //     case 7:
-        //         if (camera.recieve[0]=='-') camera.y = -camera.y;
-        //         camera.sum += camera.recieve[0];
-        //         camera.count=8;
-		// 						data[camera.count] = camera.recieve[0];
-        //         break;
-        //     case 8:
-        //         if (camera.sum==camera.recieve[0])
-        //         {
-		// 							data[9] = camera.recieve[0];
-		// 								//sendware()
-        //             camera.transmit[0]='R';
-        //             HAL_UART_Transmit(&huart2,camera.transmit,1,1000);
-										
-		// 								if (tele_data.s1==1){
-		// 									if (cheat_ready==1){				
-		// 										angle=atan(camera.y*0.00222)*1004.05;
-		// 										pitch=cloud_pitch.Bmechanical_angle+angle;
-		// 										angle=atan(camera.x*0.00222)*1304.05;
-		// 										yaw=cloud_yaw. Bmechanical_angle-angle ;
-		// 										cheat_ready=0;
+        
+		switch (camera.count)
+		{
+			case 0:
+				camera.ready = 0;
+				if (camera.recieve[0]=='&') camera.count=1;
+				else camera.count=0;
+				data[camera.count] = camera.recieve[0];
+				break;
+			case 1:
+				if (camera.recieve[0]=='%') camera.count=2;
+				else camera.count=0;
+								data[camera.count] = camera.recieve[0];
+				break;
+			case 2:
+				camera.sum = '%'+'&';
+				camera.x = camera.recieve[0]<<8;
+				camera.sum += camera.recieve[0];
+				camera.count=3;
+								data[camera.count] = camera.recieve[0];
+				break;
+			case 3:
+				camera.x += camera.recieve[0];
+				camera.sum += camera.recieve[0];
+				camera.count=4;
+								data[camera.count] = camera.recieve[0];
+				break;
+			case 4:
+				if (camera.recieve[0]=='-') camera.x = -camera.x;
+				camera.sum += camera.recieve[0];
+				camera.count=5;
+								data[camera.count] = camera.recieve[0];
+				break;
+			case 5:
+				camera.y = camera.recieve[0]<<8;
+				camera.sum += camera.recieve[0];
+				camera.count=6;
+								data[camera.count] = camera.recieve[0];
+				break;
+			case 6:
+				camera.y += camera.recieve[0];
+				camera.sum += camera.recieve[0];
+				camera.count=7;
+								data[camera.count] = camera.recieve[0];
+				break;
+			case 7:
+				if (camera.recieve[0]=='-') camera.y = -camera.y;
+				camera.sum += camera.recieve[0];
+				camera.count=8;
+								data[camera.count] = camera.recieve[0];
+				break;
+			case 8:
+				if (camera.sum==camera.recieve[0])
+				{
+					data[9] = camera.recieve[0];
+										//sendware()
+					camera.transmit[0]='R';
+					HAL_UART_Transmit(&huart2,camera.transmit,1,1000);
+				}
+				else {
+					camera.x=0;
+					camera.y=0;
+					camera.transmit[0]='W';
+					HAL_UART_Transmit(&huart2,camera.transmit,1,1000);
+				}
+				camera.count=0;
+				camera.ready = 1;
+			break;
 
-		// 									}
-		// 										if(cloud_yaw.Bmechanical_angle-yaw>-30&&cloud_yaw.Bmechanical_angle-yaw<30)
-		// 										if(cloud_pitch.Bmechanical_angle-pitch>-100&&cloud_pitch.Bmechanical_angle-pitch<100)
-		// 											cheat_ready=1;
-											
-		// 								}}
-        //         else {
-        //             camera.x=0;
-        //             camera.y=0;
-        //             camera.transmit[0]='W';
-        //             HAL_UART_Transmit(&huart2,camera.transmit,1,1000);
-        //         }
-        //         camera.count=0;
-        //         break;
-							
 				
-				
+						
+		}
 
-	
-		// 			if(pitch<(pitch_mid-600))pitch=pitch_mid-600;
-		// 			if(pitch>(pitch_mid+600))pitch=pitch_mid+600;
-		// 			if(yaw<(yaw_mid-800))yaw=yaw_mid-800;
-		// 			if(yaw>(yaw_mid+800))yaw=yaw_mid+800;
-					
-    // }   
 	}
-	/******************²ÃÅÐÏµÍ³´®¿ÚÊý¾Ý´¦Àí********************/
+	/******************ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½********************/
 	else if (huart->Instance==USART6)
 	{
 		
@@ -148,7 +131,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 	// else if (huart->Instance == UART4)
 	// {
 	// 	rxPID.Buf[rxPID.Count & 0x7f] = rxPID.pidReadBuf;
-	// 	//ÊÇ·ñ¿ªÊ¼½ÓÊÕ
+	// 	//ï¿½Ç·ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 	// 	if ((rxPID.Count & 0x7f) == 0 && rxPID.Buf[0] != '$')
 	// 		return;
 
@@ -156,7 +139,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 
 	// 	if ((rxPID.Count & 0x7f) == 8)
 	// 	{
-	// 		//½ÓÊÕÕýÈ·
+	// 		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·
 	// 		if (rxPID.Sum == rxPID.pidReadBuf)
 	// 		{
 	// 			for (int i = 0; i < 4; i++)

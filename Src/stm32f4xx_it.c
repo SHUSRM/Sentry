@@ -235,11 +235,24 @@ void CAN1_RX0_IRQHandler(void)
 void USART2_IRQHandler(void)
 {
   /* USER CODE BEGIN USART2_IRQn 0 */
-
+uint32_t timeout=0;
   /* USER CODE END USART2_IRQn 0 */
   HAL_UART_IRQHandler(&huart2);
   /* USER CODE BEGIN USART2_IRQn 1 */
-
+	timeout=0;
+    while (HAL_UART_GetState(&huart2) != HAL_UART_STATE_READY)//???????
+	{
+	 timeout++;////???????
+     if(timeout>HAL_MAX_DELAY) break;		
+	
+	}
+     
+	timeout=0;
+	while(HAL_UART_Receive_IT(&huart2,camera.recieve,1) != HAL_OK)//h?d????????????????????????RxXferCount?1
+	{
+	 timeout++; //???????
+	 if(timeout>HAL_MAX_DELAY) break;	
+	}
   /* USER CODE END USART2_IRQn 1 */
 }
 
@@ -263,11 +276,11 @@ void UART4_IRQHandler(void)
 void TIM6_DAC_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM6_DAC_IRQn 0 */
-	Timer_interrupt();
+	
   /* USER CODE END TIM6_DAC_IRQn 0 */
   HAL_TIM_IRQHandler(&htim6);
   /* USER CODE BEGIN TIM6_DAC_IRQn 1 */
-
+	Timer_interrupt();
   /* USER CODE END TIM6_DAC_IRQn 1 */
 }
 

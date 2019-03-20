@@ -3,31 +3,33 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: ¦ÌVision V5.21.1.0
-Copyright (C) 2016 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: M buster, shu, LIC=MGX56-D3PSW-NRYXL-05E1I-0KQDS-7EBYG
+IDE-Version: ¦ÌVision V5.24.2.0
+Copyright (C) 2017 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: wang vacuo, HP Inc., LIC=03C63-APQ5P-2Z2W4-F05KM-A4NUM-L2S9L
  
 Tool Versions:
-Toolchain:       MDK-ARM Professional  Version: 5.21a
+Toolchain:       MDK-ARM Plus  Version: 5.24.1
 Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
-C Compiler:      Armcc.exe V5.06 update 3 (build 300)
-Assembler:       Armasm.exe V5.06 update 3 (build 300)
-Linker/Locator:  ArmLink.exe V5.06 update 3 (build 300)
-Library Manager: ArmAr.exe V5.06 update 3 (build 300)
-Hex Converter:   FromElf.exe V5.06 update 3 (build 300)
-CPU DLL:         SARMCM3.DLL V5.21a
-Dialog DLL:      DCM.DLL V1.13.8.0
-Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.18.0
-Dialog DLL:      TCM.DLL V1.14.14.0
+C Compiler:      Armcc.exe V5.06 update 5 (build 528)
+Assembler:       Armasm.exe V5.06 update 5 (build 528)
+Linker/Locator:  ArmLink.exe V5.06 update 5 (build 528)
+Library Manager: ArmAr.exe V5.06 update 5 (build 528)
+Hex Converter:   FromElf.exe V5.06 update 5 (build 528)
+CPU DLL:         SARMCM3.DLL V5.24.1
+Dialog DLL:      DCM.DLL V1.16.0.0
+Target DLL:      Segger\JL2CM3.dll V2.99.26.0
+Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
-D:\buster\workspace\19RM\Sentry\MDK-ARM\hero.uvprojx
-Project File Date:  01/14/2019
+D:\GitHub\Sentry\Sentry\MDK-ARM\hero.uvprojx
+Project File Date:  03/18/2019
 
 <h2>Output:</h2>
-*** Using Compiler 'V5.06 update 3 (build 300)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+*** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'hero'
 compiling control.c...
+..\Control\Inc\control.h(64): warning:  #1295-D: Deprecated declaration dan_control - give arg types
+  void dan_control();
 ..\Control\Inc\tele_control.h(43): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\Control\Inc\my_flash.h(25): warning:  #1-D: last line of file ends without a newline
@@ -36,58 +38,60 @@ compiling control.c...
   void debug_init();
 ..\Control\Inc\debug.h(17): warning:  #1-D: last line of file ends without a newline
   #endif
-..\Control\Src\control.c(127): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+..\Control\Src\control.c(136): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   	if(
 BS(track_position) < 
 BS(track_len * 0.05))
-..\Control\Src\control.c(127): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+..\Control\Src\control.c(136): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   	if(
 BS(track_position) < 
 BS(track_len * 0.05))
-..\Control\Src\control.c(127): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+..\Control\Src\control.c(136): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   	if(
 BS(track_position) < 
 BS(track_len * 0.05))
-..\Control\Src\control.c(132): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+..\Control\Src\control.c(141): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   	else if(
 BS(track_position) > 
 BS(track_len *0.95))
-..\Control\Src\control.c(132): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+..\Control\Src\control.c(141): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   	else if(
 BS(track_position) > 
 BS(track_len *0.95))
-..\Control\Src\control.c(132): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+..\Control\Src\control.c(141): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   	else if(
 BS(track_position) > 
 BS(track_len *0.95))
-..\Control\Src\control.c(220): warning:  #1-D: last line of file ends without a newline
-  /****************************************/
-..\Control\Src\control.c: 11 warnings, 0 errors
+..\Control\Src\control.c(334): warning:  #1-D: last line of file ends without a newline
+  }
+..\Control\Src\control.c: 12 warnings, 0 errors
 linking...
-hero\hero.axf: Warning: L6304W: Duplicate input file hero\debug_1.o ignored.
-hero\hero.axf: Warning: L6304W: Duplicate input file hero\my_flash_1.o ignored.
-Program Size: Code=21186 RO-data=494 RW-data=132 ZI-data=2580  
-Finished: 0 information, 2 warning and 0 error messages.
+Program Size: Code=25578 RO-data=646 RW-data=224 ZI-data=2952  
 FromELF: creating hex file...
-"hero\hero.axf" - 0 Error(s), 13 Warning(s).
+"hero\hero.axf" - 0 Error(s), 12 Warning(s).
 
 <h2>Software Packages used:</h2>
 
 Package Vendor: ARM
-                http://www.keil.com/pack/ARM.CMSIS.4.5.0.pack
-                ARM::CMSIS:CORE:4.3.0
+                http://www.keil.com/pack/ARM.CMSIS.5.0.1.pack
+                ARM.CMSIS.5.0.1
                 CMSIS (Cortex Microcontroller Software Interface Standard)
-   * Component: CORE Version: 4.3.0
+   * Component: CORE Version: 5.0.1
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32F4xx_DFP.2.13.0.pack
+                Keil.STM32F4xx_DFP.2.13.0
+                STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
 
 <h2>Collection of Component include folders:</h2>
-  D:\buster\workspace\19RM\Sentry\MDK-ARM\RTE
-  C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include
-  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.11.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+  .\RTE\_hero
+  C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include
+  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
 
 <h2>Collection of Component Files used:</h2>
 
-   * Component: ARM::CMSIS:CORE:4.3.0
-Build Time Elapsed:  00:00:04
+   * Component: ARM::CMSIS:CORE:5.0.1
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>

@@ -46,6 +46,86 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
+/*
+                                                                                                    
+                                                                                                    
+                                   RRmsr                                                            
+                                  sRRRMRRRmmSr                                                      
+                                  RMMMMMRMRMRRRMRMmss                                               
+                                 sRRMMMMMMMMMMMRMRMRRRMRmmSrr                                       
+                                 RRMMMMMMMMMRMMMMMMMMRRRRMRMRMRRmss                                 
+                                SRMMMMMMMMMRMRMMMMMMMMMMMMMRMRMRMRMRRRmMSrr                         
+                                RRRmMMMMMMMmRMRMRRRMRMRMMMMMMMMMMMRMRMRRRMRMRMm                     
+                               mMRMMMMMMRR    rrsmMRMRMRRRRRMMMMMMMMMMMMMMMRRR                      
+                              rMRMMMMMMMRS            sSmRRRRMRMRRRMRMMMMMMMRS                      
+                              MRMMMMMMMRR                   rrsMMRMRMRMRMRMRMMmMssr                 
+                             rRRMMMMMMRRs                           ssmMRMRMRRRRRMRMRMMms           
+                             RMMMMMMMRRR                                   rsmmRMRMRMRMRMRRRMRsss   
+                            sMRMMMMMMMRr                                          rrsMMMRRRMRRRMRMRM
+                            MRMMMMMMMRM       mMssr                                      rsmmRMRMRMm
+                           SRRMMMMMMRMr       RmmmMMMMmSMmmmmmmmMmMmMMRMRMRMRMRMRMRRRMRs        ssMr
+                           RMMMMMMMMRM       sMssssssSsmMRMRRRMRMRRRRRMRMRMRMRMRMRRRMRMs            
+                          mRRMMMMMMMR        mmsssssssrmRMMMMMRMRMRRRMRMRMMmRMMMMMMMMMRs            
+                          MRMMMMMMMRS        MSsssssssrMMMMMmMMr            RRMMmMMMmMMs            
+                         MRMMMMMMMRR        sMsssssssrsMMMMMMMRr            RRMmMMMmMMRs            
+                        rRMMMMMMMRRs        mmsssssssrmRMMmMMMRm            MRMMMMMMMMMS            
+                        RMMMMMMMMMR         MSsssssssrRMMMMmMmRMrrssssmmRMMmRMMMMMMMMMRs            
+                       sMRMMMMMMMRs        rRsssssssrsRMmMmMMMMRMRMRRRMRRRMRMMMMMMMMMMMm            
+                       RRMMMMMMMRM         mMsssssssrMRMMMMMMMMMMMRMMMRMRMRMRMRMRRRMRMRM            
+                      SRMMMMMMMRR          MsssssssssRMRMRMRMRMMMMMMMRMMRRRRMRMRMRMRRRMR            
+                      RMMMMMMMMRM         rMsssssssSS rr  sMSssssssssSm                             
+                     mRMMMMMMMRR          mmsssssssRr      mMssssSsSsSMr                            
+                    rRRMMMMMMMRS          MSssssssSM        RMsSSSSSSsMM                            
+                    MRMMMMMMMRM          rMsssssssMm         RmSSSSSSSSRr                           
+                   rRMMMMMMMRMs          SMsssssssRr         rRSSSSSSSSMm                           
+                   RMRMMMMMMMM           MsssssssSM           SRSSSSSSSmR                           
+                  sMRMMMMmMmMMMmms      rMsssssssmm            MRsSsSSSSRs                          
+                  MRMMMMMMMMMMRRMRRRRMsrsmsssssssRs             MMsSSSSSmR                          
+                 sRMMMMMMmMMMMMMMMRMRMRMsrssssssSm              rMmsSSSSSMr                         
+                 RMRMMMMMMMMMMMMMMMMMMMmrssssssssSs              sMSSSSSsRM                         
+                RRRRRMRMMMMMMMMMMMMMMMRsrsssssssrMRMRRMmrr        mRSSSSSSR                         
+                  rSmRMRRRMRMMMMMMMMMRMrssssssssrMRRMRMRRRMRmSr    mmssSsSRS                        
+                      rsmMRMRRRMRMMMMRmrsssssssrsMMMMMMMMRRMRMRRRmsrmsssssmM                        
+                            rSmRMRMRMRsrsssssssrSRMMMMMMMMMMMMMRRRMRMRMMmSsRr                       
+                                  rsMmsssssssssrRMMMMMMMMMMMMMMMMMMMMMMMRMRRRmsr                    
+                                      msssssssrmRRRRMMMMMMMMMMMMMMMMMMMMMMMMMRRRRRMmSr              
+                                     sMsssssssSSMMRMRMRMRMMMMMMMMMMMMMMMMMMMMMMMRRRMRMRRRmsr        
+                                     MSssssssSM    rsmMRMRMRMRMMMMMMMMMMMMMMMMMMMMMMMRMRMRSMMMmSr   
+                             mMss   rMSSSssssmm         rrmmRMRMRMMMMMMmMMMMMMMMMMMMMMMMRssssSmmMMm 
+                           rMMsmmmmSssrrrsmMmRs               rrsRMMMMMMMRMMMMMMMMMMMMMRmrssssssmR  
+                          SMSssssssSSssssr  rs                  SMMMMMRMmRRMRMMMMMMMMMRMssssssssRs  
+                        rMmsssssssssssrrMR                     mMMMMMMRM  rRMMMRMRRRRRMmrssssssmM   
+                       sMSssssssssssrrsMRRs                   MRMmMMMMMMRr rRssmrrmRRRRrsssssssRr   
+                      mMsssssssssssrrmMRMRM                  mRRMMmMRRMRMRr sRsMs    rsSssssssMM    
+                    sMmsssssssssssrsRMRMMMRm                mMMMMmRMSMRMMRRr mMmR     MSssssssR     
+                   mMSssssssssssSsMRRMMMMMMR               mMRmMMRMM rMRMMMR  MmMs   mRssssssMS     
+                 rMmsssssssssssMm rMRMMMMMMRm             mMRMMMMRM   rMRMMMR  MRM   MSsssssSM      
+                sMSssssssssssSMs    MRRMMMMRMr           mMRMMMRRM     sRRMMMR rms  mMssssssMS      
+               MMsssssssssssMMr      MRRMMMMRM          mMRMMMMMM       sMRMMMRr   rRssssssSR       
+             sMmssssssssssSRS         SRMMMMRRr        SMRMMMMMM         sMRMMMRr  MmssssssRs       
+    r       mMsssssssssssmRr           sRRMMRMR       SRRMMMMMR           sMRMMMRrrRssssssmM        
+    RRMmsrrMmsssssssssssMm              rRMRMRRs     SMRMMmMRM             sMRMRMrsmssssssMr        
+   sRRRMRmSsssssssssssmMs                 RMRMRR    SMRMMMMRR               sMRm rMssssssmM         
+   RMRMMrrsssssssssssss                    RMRMRs  SMRMMmMMR                 ss  RSssssssRr         
+  MRRRSrsssssssssssrrmSrr                   mMRMR rRRMMMMRR                     SMssssssMm          
+ rMRMsrsssssssssssrrmRMRMRMmSr               sMRRRMRmMMMRR                      MSsssssSM           
+  rssrsssssssssssrsRRMMMRMRMRMRRMsr           rMRRRmMMMMR                      mMssssssMS           
+  SSsssssssssssssMMRMMMMMMMMMRMRMRRRRmSr        RRMMMMMR                      rRssssssSR            
+ mRmmmmsssssssmsRMRMRMRMMMMMMMMMMMRMRMRMRRRSr    sRMRMR                       MmssssssRs            
+    rsSmMMmSmRs   ssmRMRRRMRMMMMMMMMMMMMMRMRMRMms sRMm                       rMssssssmM             
+         rsmMr         rSmRRRMRMRMMMMMMMMMMMMMRRRMmMRsr                      MmssssssRr             
+                            rsMRMRRRRRMMMMMMMMMMMMMMMRMRRMSr                sRssssssmM              
+                                 rsmRMRMRRRMMMMMMMMMMMMMRMRRRMRSs           RSssssssRr              
+                                      rSMRMRRRMRMMMMMMMMMMMMMRRRRRMMSsr    SRssssssMm               
+                                           rsmRMRMRMRMMMMMMMMMMMMRRMRRRRRSsmSsssssSR                
+                                                rsmRMRMRRRMMMMMMMMMMMMRRRRmrssssssMm                
+                                                     rsmRMRMRMRMMMMMMMMMRmrssssssSR                 
+                                                          rsmRMRMRMRMMMRMsrssssssRS                 
+                                                               rsmRMRMRRMrssssssmM                  
+                                                                     smRMMmmSSssRs                  
+                                                                         rsmMMMRR                   
+                                                                               s                    
+*/
 #include "can_my.h"
 #include "usart_my.h"
 #include "mpu6050.h"
@@ -53,6 +133,7 @@
 #include "my_flash.h"
 #include "tele_control.h"
 #include "delay.h"
+#include "control.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -88,7 +169,7 @@ int main(void)
   /* MCU Configuration----------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+   HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -117,8 +198,11 @@ int main(void)
   /* Initialize interrupts */
   MX_NVIC_Init();
   /* USER CODE BEGIN 2 */
+  CAN1_Init();																//can初始化
+  HAL_Delay(100);
   para_init();
 	HAL_UART_Receive_DMA(&huart1,teledata_rx,sizeof(teledata_rx));				//遥控器接收数据通过DMA中断存入teledata			
+	HAL_UART_Receive_IT(&huart2, camera.recieve,sizeof(camera.recieve));
   ALLPID_Init();
 	HAL_TIM_PWM_Start(&htim12,TIM_CHANNEL_1);
 	HAL_TIM_PWM_Start(&htim12,TIM_CHANNEL_2);
@@ -127,12 +211,13 @@ int main(void)
 	HAL_Delay(2000);
 	HAL_Delay(2000);
 	HAL_Delay(2000);
-	HAL_Delay(2000);
-	HAL_Delay(2000);
-	HAL_TIM_Base_Start_IT(&htim6);												//定时器中断打开
-	CAN1_Init();																//can初始化
 	MPU6050_Init();																//陀螺仪初始化
-	// MPU6050_GyroOffest();																//陀螺仪校准
+
+	//HAL_Delay(2000);
+	//HAL_Delay(2000);
+	
+	HAL_TIM_Base_Start_IT(&htim6);												//定时器中断打开
+	//MPU6050_GyroOffest();																//陀螺仪校准
   debug_init();                            //led初始化
 
 //	
